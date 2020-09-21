@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from rest_framework.views import APIView
 from django.core import serializers
 
-from Edge.settings import EMAIL_HOST_USER
+from edge.settings import EMAIL_HOST_USER
 from main.response_processing import server_error_response, cors_response, not_found_response, get_success_response
 from vacancy.models import Job
 
