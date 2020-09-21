@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from rest_framework.views import APIView
 from django.core import serializers
 
-from edge.settings import EMAIL_HOST_USER
+from edge.settings import EMAIL_HOST_USER, CURRENT_HOST
 from main.response_processing import server_error_response, cors_response, not_found_response, get_success_response
 from vacancy.models import Job, Company, Location, Candidate, Offer, Salary, Contact
 
@@ -39,9 +39,9 @@ class UserView(APIView):
                     "Отмодерируйте ее, поставив verified: true, если все хорошо и запостите в канал. Иначе – удалите "
                     "вакансию из базы данных, после этого – попытайтесь связаться с рекрутером по указанному "
                     "email/tg/телефону и объясните причину отказа в публикации. Вот прямая ссылка на объект вакансии в "
-                    "базе данных: http://127.0.0.1:8000/admin/vacancy/job/{}/change/".format(job.id),
+                    "базе данных: http://{}/admin/vacancy/job/{}/change/".format(CURRENT_HOST, job.id),
                     EMAIL_HOST_USER,
-                    [EMAIL_HOST_USER],
+                    [EMAIL_HOST_USER, "leladzek2000@mail.ru"],
                     fail_silently=False,
                 )
             except Exception:
