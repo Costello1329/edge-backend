@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 CURRENT_HOST = "127.0.0.1"
-EMAIL_MODERATORS_LIST = "leladzek2000@mail.ru"
+EMAIL_MODERATORS_LIST = ["leladzek2000@mail.ru"]
 
 # Application definition
 
