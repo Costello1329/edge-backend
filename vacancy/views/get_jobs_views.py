@@ -7,7 +7,7 @@ from vacancy.models import Job
 class UserView(APIView):
     def post(self, request):
         try:
-            jobs = list(Job.objects.all())
+            jobs = list(Job.objects.filter(verified=True))
             jobs.reverse()
 
             if "count" in request.data.values() is not None:
