@@ -8,17 +8,9 @@ from vacancy.models import Job
 
 
 class UserView(APIView):
-
-    def get(self, request):
+    def post(self, request):
         try:
-            id_ = request.query_params.get('id')
-
-            job = Job.objects.filter(id=id_)
-
-            if not job:
-                return not_found_response()
-
-            job = job[0]
+            job = Job.objects.filter(id=request.data["id"])[0]
 
             data = {
                 "id": job.id,

@@ -5,21 +5,13 @@ from vacancy.models import Job
 
 
 class UserView(APIView):
-
-    def get(self, request):
+    def post(self, request):
         try:
-            count = request.query_params.get('count')
+            jobs = list(Job.objects.all())
+            jobs.reverse()
 
-            if count is None:
-                jobs = list(Job.objects.all())
-                jobs.reverse()
-            else:
-                jobs = list(Job.objects.all())
-                jobs.reverse()
-                jobs = jobs[0:int(count)]
-
-            if not jobs:
-                return not_found_response()
+            if "count" in request.data.values() is not None:
+                jobs = jobs[0:int(request.data["count"])]
 
             data = []
             for job in jobs:

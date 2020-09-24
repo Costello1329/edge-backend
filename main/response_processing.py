@@ -40,9 +40,9 @@ def cors_response():
 
 def setup_cors_response_headers(res):
     # TODO: put origin inside the config.
-    res["Access-Control-Allow-Origin"] = "http://localhost:1329, http://127.0.0.1:1329"
+    res["Access-Control-Allow-Origin"] = "*"
     # TODO: create allow_method decorator.
-    res["Access-Control-Allow-Methods"] = "GET,POST,PUT,DELETE,OPTIONS"
+    res["Access-Control-Allow-Methods"] = "GET,POST"
     res["Access-Control-Allow-Headers"] = \
         "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
     res["Access-Control-Allow-Credentials"] = "true"
