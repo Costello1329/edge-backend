@@ -10,16 +10,16 @@ class Job(models.Model):
     premium = models.BooleanField(default=False)
     verified = models.BooleanField(default=False)
     company = models.ForeignKey(
-        "vacancy.Company", on_delete=models.PROTECT,
+        "vacancy.Company", on_delete=models.CASCADE,
         related_name="Job_to_company")
     candidate = models.ForeignKey(
-        "vacancy.Candidate", on_delete=models.PROTECT,
+        "vacancy.Candidate", on_delete=models.CASCADE,
         related_name="job_to_candidate")
     offer = models.ForeignKey(
-        "vacancy.Offer", on_delete=models.PROTECT,
+        "vacancy.Offer", on_delete=models.CASCADE,
         related_name="job_to_offer")
     contact = models.ForeignKey(
-        "vacancy.Contact", on_delete=models.PROTECT,
+        "vacancy.Contact", on_delete=models.CASCADE,
         related_name="job_to_contact")
 
 
@@ -34,7 +34,7 @@ class Company(models.Model):
     industry = models.CharField(max_length=64)
     website = models.CharField(max_length=64)
     location = models.ForeignKey(
-        "vacancy.Location", on_delete=models.PROTECT,
+        "vacancy.Location", on_delete=models.CASCADE,
         related_name="company_to_location")
     remote = models.BooleanField()
 
@@ -46,7 +46,7 @@ class Location(models.Model):
 
 class Offer(models.Model):
     salary = models.ForeignKey(
-        "vacancy.Salary", on_delete=models.PROTECT,
+        "vacancy.Salary", on_delete=models.CASCADE,
         related_name="Offer_to_salary")
     description = models.CharField(max_length=4096, null=True, blank=True)
 
