@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import configparser
+import json
+
+config = configparser.ConfigParser()
+config.read('settings.config.ini')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,8 +31,8 @@ SECRET_KEY = 'm__z%-f6hvb%5w@0x$#=x*vj28wl^j9sefu$rm$m6$*pb00r^@'
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CURRENT_HOST = "127.0.0.1"
-EMAIL_MODERATORS_LIST = ["leladzek2000@mail.ru"]
+CURRENT_HOST = config["MAIN"]["backend_host"]
+EMAIL_MODERATORS_LIST = json.loads(config["MAIN"]["moderators_emails"])
 
 # Application definition
 
@@ -126,5 +131,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "healthmeterstest@gmail.com"
-EMAIL_HOST_PASSWORD = "9C>Du>x+?a#'q6Aq"
+EMAIL_HOST_USER = config["MAIN"]["email_login"]
+EMAIL_HOST_PASSWORD = config["MAIN"]["email_password"]

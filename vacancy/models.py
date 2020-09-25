@@ -24,15 +24,15 @@ class Job(models.Model):
 
 
 class Candidate(models.Model):
-    level = models.CharField(max_length=36)
-    skill = models.CharField(max_length=36)
+    level = models.CharField(max_length=64)
+    skill = models.CharField(max_length=64)
     stack = models.CharField(max_length=256)
 
 
 class Company(models.Model):
-    name = models.CharField(max_length=36)
-    industry = models.CharField(max_length=36)
-    website = models.CharField(max_length=36)
+    name = models.CharField(max_length=64)
+    industry = models.CharField(max_length=64)
+    website = models.CharField(max_length=64)
     location = models.ForeignKey(
         "vacancy.Location", on_delete=models.PROTECT,
         related_name="company_to_location")
@@ -40,15 +40,15 @@ class Company(models.Model):
 
 
 class Location(models.Model):
-    country = models.CharField(max_length=36)
-    city = models.CharField(max_length=36)
+    country = models.CharField(max_length=64)
+    city = models.CharField(max_length=64)
 
 
 class Offer(models.Model):
     salary = models.ForeignKey(
         "vacancy.Salary", on_delete=models.PROTECT,
         related_name="Offer_to_salary")
-    description = models.CharField(max_length=255, null=True, blank=True)
+    description = models.CharField(max_length=4096, null=True, blank=True)
 
 
 class Salary(models.Model):
@@ -58,5 +58,5 @@ class Salary(models.Model):
 
 class Contact(models.Model):
     email = models.CharField(max_length=64)
-    phone = models.CharField(max_length=32)
-    telegram = models.CharField(max_length=128)
+    phone = models.CharField(max_length=64)
+    telegram = models.CharField(max_length=64)
